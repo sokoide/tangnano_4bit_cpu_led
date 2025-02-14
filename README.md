@@ -3,24 +3,22 @@
 ## About
 
 * [DL166](https://github.com/imaoca/dl166) 4bit CPU implementation for Tang Nano 20K
-* With a test bench example for Verilator
-* With a wave output example for Verilator & Gtkwave
+* With a test bench example for DSim Desktop
+* With a wave output example for DSim Desktop
 * Please refer to the great [Monoist articles](https://monoist.itmedia.co.jp/mn/series/33743/) for more details
 
 
-## How to run
-
-### Prereq
-
-* brew install verilator
-* clone and build gtkwave at https://github.com/gtkwave/gtkwave
-
-### Test Bench
+## How to build
 
 ```bash
+# On macos
 make clean
-make run
-make wave
+make
+make download
 ```
+
+## How to test
+
+* Run DSIM Desktop on Linux x64 through VS code remote
 
 ![wave](./wave.png)

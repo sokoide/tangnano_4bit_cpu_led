@@ -4,5 +4,14 @@ impl/*
 !impl/4bit_process_config.json
 obj_dir/*
 *.user
+
+# dsim
+dsim_work/
+dsim.*
+dvlcom.*
+*.dpf
+metrics.db
+
 waveform.vcd
+waveform.view
 
