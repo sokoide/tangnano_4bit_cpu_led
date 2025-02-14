@@ -1,6 +1,4 @@
-module tb_cpu(
-    );
-
+module tb_cpu;
     // signals for test
     logic clk;
     logic reset;
@@ -12,6 +10,9 @@ module tb_cpu(
     logic [7:0] col;
     logic [7:0] row;
     logic [23:0] counter;
+
+    // individual register assignments
+    logic [7:0] reg0, reg1, reg2, reg3, reg4, reg5, reg6, reg7;
 
     // ram instance
     logic [7:0] r_data;
@@ -41,17 +42,20 @@ module tb_cpu(
         );
 
 `ifdef DEBUG_MODE
-
     initial begin
-        $dumpvars(0, tb_cpu.regs);  // 全信号を出力
         $display("DEBUG_MODE is ENABLED");
     end
 `endif
 
+    // assign individual registers for waveform
+    always_comb begin
+        {reg7, reg6, reg5, reg4, reg3, reg2, reg1, reg0} = {regs[7], regs[6], regs[5], regs[4], regs[3], regs[2], regs[1], regs[0]};
+    end
+
     // 10ns clock (#5 means 5ns)
     always #5 clk = ~clk;
 
-    // Test
+    // test
     initial begin
         clk = 0;
 
@@ -59,7 +63,7 @@ module tb_cpu(
         btn = 4'b0000;
 
         reset = 0; // active
-        repeat (10) @(posedge clk);  // wait for 10 clock cycles
+        repeat (1) @(posedge clk);  // wait for 1 clock cycles
         reset = 1; // release
 
         // afetr 10 cycles (reset), adr must be 0
@@ -112,10 +116,4 @@ module tb_cpu(
         $display("All Test Passed");
         $finish;
     end
-
-    // initial begin
-    //   $dumpfile("waveform.vcd");
-    //   $dumpvars(0, cpu_tb);
-    // end
-
 endmodule
