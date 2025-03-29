@@ -26,9 +26,9 @@ module top(
     ram ram1 (
             .clk       (counter[23]),
             .we        (1'b0),
-            .r_addr    ({4'b0000, pc}),
+            .r_addr    (pc),
             .r_data    (r_data),
-            .w_addr    ({4'b0000, pc}),
+            .w_addr    (pc),
             .w_data    (w_data)
         );
 

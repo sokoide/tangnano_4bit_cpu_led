@@ -10,7 +10,7 @@ module cpu(
         input  logic [7:0]   dout
 
 `ifdef DEBUG_MODE
-        , output logic [7:0] debug_regs [7:0]  // Debug output (only in debug mode)
+        , output logic [3:0] debug_regs [7:0]  // Debug output (only in debug mode)
 `endif
     );
 
@@ -25,7 +25,7 @@ module cpu(
 
     // Internal registers.
     logic        c_flag;
-    logic [7:0]  regs [7:0];
+    logic [3:0]  regs [7:0];
 
 `ifdef DEBUG_MODE
     // Assign debug output for testing
