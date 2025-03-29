@@ -4,7 +4,7 @@ module tb_cpu;
     logic reset;
     logic [3:0] btn;
     logic [3:0] led;
-    logic [3:0] adr;
+    logic [3:0] pc;
     logic [7:0] dout;
     logic [7:0] regs [7:0];
     logic [7:0] col;
@@ -19,7 +19,7 @@ module tb_cpu;
     ram ram_inst (
             .clk    (clk),
             .we     (1'b0),
-            .r_addr ({4'b0000, adr}),  // receive from CPU
+            .r_addr ({4'b0000, pc}),  // receive from CPU
             .r_data (r_data),
             .w_addr (8'd0),
             .w_data (8'd0)
@@ -32,7 +32,7 @@ module tb_cpu;
             .btn    (btn),
             .counter(counter),
             .led    (led),
-            .adr    (adr),
+            .pc     (pc),
             .col    (col),
             .row    (row),
             .dout   (r_data)
@@ -66,7 +66,7 @@ module tb_cpu;
         repeat (1) @(posedge clk);  // wait for 1 clock cycles
         reset = 1; // release
 
-        // afetr 10 cycles (reset), adr must be 0
+        // afetr 10 cycles (reset), pc must be 0
         $display("10 cycles");
         // test led
         if (led !== 4'b0000) begin

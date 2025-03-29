@@ -11,7 +11,7 @@ module top(
     // internal signals
     logic [7:0]  w_data;
     logic [7:0]  r_data;
-    logic [3:0]  adr;
+    logic [3:0]  pc;
     logic [3:0]  led;
     logic [3:0]  btn;
     logic [23:0] counter;
@@ -26,9 +26,9 @@ module top(
     ram ram1 (
             .clk       (counter[23]),
             .we        (1'b0),
-            .r_addr    ({4'b0000, adr}),
+            .r_addr    ({4'b0000, pc}),
             .r_data    (r_data),
-            .w_addr    ({4'b0000, adr}),
+            .w_addr    ({4'b0000, pc}),
             .w_data    (w_data)
         );
 
@@ -39,7 +39,7 @@ module top(
             .btn     (btn),
             .counter (counter),
             .led     (led),
-            .adr     (adr),
+            .pc      (pc),
             .col     (col),
             .row     (row),
             .dout    (r_data)

@@ -4,7 +4,7 @@ module cpu(
         input  logic [3:0]   btn,
         input  logic [23:0]  counter,
         output logic [3:0]   led,
-        output logic [3:0]   adr,
+        output logic [3:0]   pc,
         output logic [7:0]   col,
         output logic [7:0]   row,
         input  logic [7:0]   dout
@@ -34,7 +34,7 @@ module cpu(
 
     // Output assignments.
     assign led = regs[6];
-    assign adr = regs[7];
+    assign pc = regs[7];
 
     // anode
     assign row = { regs[i][0], regs[i][1], regs[i][2], regs[i][3], 4'b0000};
